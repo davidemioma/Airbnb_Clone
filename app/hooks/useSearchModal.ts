@@ -1,12 +1,12 @@
 import { create } from "zustand";
 
-interface SearchModalStore {
+interface SearchModalProps {
   isOpen: boolean;
   toggle: () => void;
   onClose: () => void;
 }
 
-const useSearchModal = create<SearchModalStore>((set) => ({
+const useSearchModal = create<SearchModalProps>((set) => ({
   isOpen: false,
   toggle: () =>
     set((state) => ({

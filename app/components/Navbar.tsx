@@ -9,6 +9,8 @@ import { AiOutlineMenu } from "react-icons/ai";
 import { useRouter } from "next/navigation";
 import { signOut } from "next-auth/react";
 import useSearchModal from "../hooks/useSearchModal";
+import useLoginModal from "../hooks/useLoginModal";
+import useRegisterModal from "../hooks/useRegisterModal";
 
 const Navbar = () => {
   const user = null;
@@ -16,6 +18,10 @@ const Navbar = () => {
   const router = useRouter();
 
   const searchModal = useSearchModal();
+
+  const loginModal = useLoginModal();
+
+  const registerModal = useRegisterModal();
 
   const onRentHandler = useCallback(() => {
     if (!user) {
@@ -93,13 +99,28 @@ const Navbar = () => {
                       onClick={onRentHandler}
                     />
 
-                    <MenuItem label="Logout" onClick={signOut} />
+                    <MenuItem label="Logout" onClick={() => {}} />
                   </>
                 ) : (
                   <>
-                    <MenuItem label="Sign up" bold onClick={() => {}} />
+                    <MenuItem
+                      label="Sign up"
+                      bold
+                      onClick={() => {
+                        searchModal.onClose();
 
-                    <MenuItem label=" Log in" onClick={() => {}} />
+                        registerModal.onOpen();
+                      }}
+                    />
+
+                    <MenuItem
+                      label=" Log in"
+                      onClick={() => {
+                        searchModal.onClose();
+
+                        loginModal.onOpen();
+                      }}
+                    />
 
                     <hr className="my-2" />
 
