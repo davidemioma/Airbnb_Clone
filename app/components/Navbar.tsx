@@ -1,0 +1,131 @@
+"use client";
+import { useCallback } from "react";
+import Image from "next/image";
+import Avatar from "./Avatar";
+import MenuItem from "./MenuItem";
+import Container from "./Container";
+import { BiSearch } from "react-icons/bi";
+import { AiOutlineMenu } from "react-icons/ai";
+import { useRouter } from "next/navigation";
+import { useModal } from "@/context/ModalProvider";
+import { signOut } from "next-auth/react";
+
+const Navbar = () => {
+  const session = null;
+
+  const router = useRouter();
+
+  const modal = useModal();
+
+  const onRentHandler = useCallback(() => {
+    if (!session) {
+      return modal?.setOpenLogin(true);
+    }
+
+    modal?.setOpenRent(true);
+  }, [session, modal]);
+
+  return (
+    <nav className="w-screen sticky top-0 z-30 bg-white py-4 border-b shadow-sm">
+      <Container>
+        <div className="flex items-center justify-between gap-3 lg:gap-0">
+          <Image
+            className="hidden md:inline cursor-pointer"
+            src="/assets/logo.png"
+            alt="Logo"
+            width="100"
+            height="100"
+            onClick={() => router.push("/")}
+          />
+
+          <div className="w-full md:w-auto flex items-center justify-between py-2 text-sm cursor-pointer border rounded-full shadow-sm hover:shadow-md transition">
+            <button className="px-4 font-semibold sm:border-r">Anywhere</button>
+
+            <button className="hidden sm:inline px-6 font-semibold border-r">
+              Any week
+            </button>
+
+            <div className="flex items-center justify-center space-x-2 px-6">
+              <button className="hidden sm:inline text-gray-600">
+                Add Guests
+              </button>
+
+              <button className="bg-rose-500 text-white p-1.5 sm:p-2 rounded-full">
+                <BiSearch size={18} />
+              </button>
+            </div>
+          </div>
+
+          <div className="relative">
+            <div className="flex items-center gap-3">
+              <button
+                className="hidden lg:inline text-sm font-semibold py-2 px-4 rounded-full transition hover:bg-neutral-100"
+                onClick={onRentHandler}
+              >
+                Airbnb your home
+              </button>
+
+              <button
+                className="flex items-center gap-3 border border-neutral-200 p-4 md:py-1 md:px-2 transition shadow-sm rounded-full hover:shadow-md"
+                onClick={() => modal?.setIsOpen((prev) => !prev)}
+              >
+                <AiOutlineMenu />
+
+                <div className="hidden md:inline">
+                  <Avatar src={""} />
+                </div>
+              </button>
+            </div>
+
+            {modal?.isOpen && (
+              <div className="absolute mt-3 right-0 z-30 bg-white w-60 py-2 border border-[whitesmoke] rounded-xl shadow-md">
+                {session ? (
+                  <>
+                    <MenuItem label="My trips" onClick={() => {}} />
+
+                    <MenuItem label="My favourites" onClick={() => {}} />
+
+                    <MenuItem label="My reservations" onClick={() => {}} />
+
+                    <MenuItem label="My properties" onClick={() => {}} />
+
+                    <hr className="my-2" />
+
+                    <MenuItem
+                      label="Airbnb your home"
+                      onClick={onRentHandler}
+                    />
+
+                    <MenuItem label="Logout" onClick={signOut} />
+                  </>
+                ) : (
+                  <>
+                    <MenuItem
+                      label="Sign up"
+                      bold
+                      onClick={() => modal.setOpenRegister(true)}
+                    />
+
+                    <MenuItem
+                      label=" Log in"
+                      onClick={() => modal.setOpenLogin(true)}
+                    />
+
+                    <hr className="my-2" />
+
+                    <MenuItem
+                      label="Airbnb your home"
+                      onClick={onRentHandler}
+                    />
+                  </>
+                )}
+              </div>
+            )}
+          </div>
+        </div>
+      </Container>
+    </nav>
+  );
+};
+
+export default Navbar;
