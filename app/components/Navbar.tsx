@@ -1,5 +1,5 @@
 "use client";
-import { useCallback } from "react";
+import React, { useCallback } from "react";
 import Image from "next/image";
 import Avatar from "./Avatar";
 import MenuItem from "./MenuItem";
@@ -7,23 +7,20 @@ import Container from "./Container";
 import { BiSearch } from "react-icons/bi";
 import { AiOutlineMenu } from "react-icons/ai";
 import { useRouter } from "next/navigation";
-import { useModal } from "@/context/ModalProvider";
 import { signOut } from "next-auth/react";
+import useSearchModal from "../hooks/useSearchModal";
 
 const Navbar = () => {
-  const session = null;
+  const user = null;
 
   const router = useRouter();
 
-  const modal = useModal();
+  const searchModal = useSearchModal();
 
   const onRentHandler = useCallback(() => {
-    if (!session) {
-      return modal?.setOpenLogin(true);
+    if (!user) {
     }
-
-    modal?.setOpenRent(true);
-  }, [session, modal]);
+  }, [user]);
 
   return (
     <nav className="w-screen sticky top-0 z-30 bg-white py-4 border-b shadow-sm">
@@ -67,7 +64,7 @@ const Navbar = () => {
 
               <button
                 className="flex items-center gap-3 border border-neutral-200 p-4 md:py-1 md:px-2 transition shadow-sm rounded-full hover:shadow-md"
-                onClick={() => modal?.setIsOpen((prev) => !prev)}
+                onClick={() => searchModal.toggle()}
               >
                 <AiOutlineMenu />
 
@@ -77,9 +74,9 @@ const Navbar = () => {
               </button>
             </div>
 
-            {modal?.isOpen && (
+            {searchModal.isOpen && (
               <div className="absolute mt-3 right-0 z-30 bg-white w-60 py-2 border border-[whitesmoke] rounded-xl shadow-md">
-                {session ? (
+                {user ? (
                   <>
                     <MenuItem label="My trips" onClick={() => {}} />
 
@@ -100,16 +97,9 @@ const Navbar = () => {
                   </>
                 ) : (
                   <>
-                    <MenuItem
-                      label="Sign up"
-                      bold
-                      onClick={() => modal.setOpenRegister(true)}
-                    />
+                    <MenuItem label="Sign up" bold onClick={() => {}} />
 
-                    <MenuItem
-                      label=" Log in"
-                      onClick={() => modal.setOpenLogin(true)}
-                    />
+                    <MenuItem label=" Log in" onClick={() => {}} />
 
                     <hr className="my-2" />
 

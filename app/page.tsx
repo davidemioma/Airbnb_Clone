@@ -1,3 +1,16 @@
+"use client";
+import useSearchModal from "./hooks/useSearchModal";
+
 export default function Home() {
-  return <div className="">Home</div>;
+  const searchModal = useSearchModal();
+
+  const closeAllModals = () => {
+    searchModal.isOpen && searchModal.onClose();
+  };
+
+  return (
+    <div className="w-screen h-full overflow-y-scroll" onClick={closeAllModals}>
+      Home
+    </div>
+  );
 }
