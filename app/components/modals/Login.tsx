@@ -1,10 +1,11 @@
 "use client";
 import React, { useCallback, useState } from "react";
-import { signIn } from "next-auth/react";
 import Modal from "./Modal";
+import Button from "../Button";
 import Heading from "../Heading";
 import Input from "../inputs/Input";
-import Button from "../Button";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { FcGoogle } from "react-icons/fc";
 import { AiFillGithub } from "react-icons/ai";
 import { toast } from "react-hot-toast";
@@ -13,6 +14,8 @@ import useLoginModal from "@/app/hooks/useLoginModal";
 import useRegisterModal from "@/app/hooks/useRegisterModal";
 
 const Login = () => {
+  const router = useRouter();
+
   const loginModal = useLoginModal();
 
   const registerModal = useRegisterModal();
@@ -44,6 +47,8 @@ const Login = () => {
           position: "top-center",
           duration: 2000,
         });
+
+        router.refresh();
 
         loginModal.onClose();
       }

@@ -4,17 +4,20 @@ import Image from "next/image";
 import Avatar from "./Avatar";
 import MenuItem from "./MenuItem";
 import Container from "./Container";
+import { User } from "@prisma/client";
+import { signOut } from "next-auth/react";
 import { BiSearch } from "react-icons/bi";
 import { AiOutlineMenu } from "react-icons/ai";
 import { useRouter } from "next/navigation";
-import { signOut } from "next-auth/react";
 import useSearchModal from "../hooks/useSearchModal";
 import useLoginModal from "../hooks/useLoginModal";
 import useRegisterModal from "../hooks/useRegisterModal";
 
-const Navbar = () => {
-  const user = null;
+interface Props {
+  currentUser: User | null;
+}
 
+const Navbar = ({ currentUser }: Props) => {
   const router = useRouter();
 
   const searchModal = useSearchModal();
@@ -24,9 +27,11 @@ const Navbar = () => {
   const registerModal = useRegisterModal();
 
   const onRentHandler = useCallback(() => {
-    if (!user) {
+    if (!currentUser) {
     }
-  }, [user]);
+  }, [currentUser]);
+
+  console.log(currentUser);
 
   return (
     <nav className="w-screen sticky top-0 z-30 bg-white py-4 border-b shadow-sm">
@@ -75,14 +80,14 @@ const Navbar = () => {
                 <AiOutlineMenu />
 
                 <div className="hidden md:inline">
-                  <Avatar src={""} />
+                  <Avatar src={currentUser?.image} />
                 </div>
               </button>
             </div>
 
             {searchModal.isOpen && (
               <div className="absolute mt-3 right-0 z-30 bg-white w-60 py-2 border border-[whitesmoke] rounded-xl shadow-md">
-                {user ? (
+                {currentUser ? (
                   <>
                     <MenuItem label="My trips" onClick={() => {}} />
 
@@ -99,7 +104,7 @@ const Navbar = () => {
                       onClick={onRentHandler}
                     />
 
-                    <MenuItem label="Logout" onClick={() => {}} />
+                    <MenuItem label="Logout" onClick={() => signOut()} />
                   </>
                 ) : (
                   <>
