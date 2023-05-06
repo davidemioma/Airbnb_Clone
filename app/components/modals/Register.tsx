@@ -99,14 +99,14 @@ const Register = () => {
 
       <Button
         label="Continue with Google"
-        onClick={() => {}}
+        onClick={() => signIn("google")}
         Icon={FcGoogle}
         outline
       />
 
       <Button
         label="Continue with Github"
-        onClick={() => {}}
+        onClick={() => signIn("github")}
         Icon={AiFillGithub}
         outline
       />

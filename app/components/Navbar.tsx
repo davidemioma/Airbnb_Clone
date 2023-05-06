@@ -4,7 +4,7 @@ import Image from "next/image";
 import Avatar from "./Avatar";
 import MenuItem from "./MenuItem";
 import Container from "./Container";
-import { User } from "@prisma/client";
+import { UserProps } from "@/types";
 import { signOut } from "next-auth/react";
 import { BiSearch } from "react-icons/bi";
 import { AiOutlineMenu } from "react-icons/ai";
@@ -14,7 +14,7 @@ import useLoginModal from "../hooks/useLoginModal";
 import useRegisterModal from "../hooks/useRegisterModal";
 
 interface Props {
-  currentUser: User | null;
+  currentUser: UserProps | null;
 }
 
 const Navbar = ({ currentUser }: Props) => {
