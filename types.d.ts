@@ -8,3 +8,11 @@ export type UserProps = Omit<
   updatedAt: string;
   emailVerified: string | null;
 };
+
+export interface CountryType {
+  value: string;
+  label: string;
+  flag: string;
+  latlng: number[];
+  region: string;
+}

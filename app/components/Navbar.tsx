@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 import useSearchModal from "../hooks/useSearchModal";
 import useLoginModal from "../hooks/useLoginModal";
 import useRegisterModal from "../hooks/useRegisterModal";
+import useRentModal from "../hooks/useRentModal";
 
 interface Props {
   currentUser: UserProps | null;
@@ -26,12 +27,17 @@ const Navbar = ({ currentUser }: Props) => {
 
   const registerModal = useRegisterModal();
 
+  const rentModal = useRentModal();
+
   const onRentHandler = useCallback(() => {
     if (!currentUser) {
+      return loginModal.onOpen();
     }
-  }, [currentUser]);
 
-  console.log(currentUser);
+    searchModal.onClose();
+
+    rentModal.onOpen();
+  }, [currentUser, loginModal, rentModal]);
 
   return (
     <nav className="w-screen sticky top-0 z-30 bg-white py-4 border-b shadow-sm">
