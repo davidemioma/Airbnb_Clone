@@ -1,7 +1,8 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { UserProps } from "@/types";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import useFavourite from "../hooks/useFavourite";
 
 interface Props {
   listingId: string;
@@ -9,14 +10,15 @@ interface Props {
 }
 
 const HeartButton = ({ listingId, currentUser }: Props) => {
-  const [hasFavourited, setHasFavourited] = useState(false);
-
-  const togglefavourite = () => {};
+  const { hasFavourited, toggleFavourite } = useFavourite({
+    currentUser,
+    listingId,
+  });
 
   return (
     <div
       className="relative cursor-pointer transition hover:opacity-80"
-      onClick={togglefavourite}
+      onClick={toggleFavourite}
     >
       <AiOutlineHeart
         size={28}
