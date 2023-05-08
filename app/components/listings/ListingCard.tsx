@@ -1,16 +1,16 @@
 "use client";
 import React, { useCallback, useMemo } from "react";
 import Image from "next/image";
-import { UserProps } from "@/types";
+import { Reservation } from "@prisma/client";
+import { ListingProps, UserProps } from "@/types";
 import { format } from "date-fns";
 import HeartButton from "../HeartButton";
 import { useRouter } from "next/navigation";
 import useCountries from "@/app/hooks/useCountries";
-import { Listing, Reservation } from "@prisma/client";
 import Button from "../Button";
 
 interface Props {
-  listing: Listing;
+  listing: ListingProps;
   currentUser: UserProps | null;
   reservation?: Reservation;
   disabled?: boolean;
