@@ -64,7 +64,10 @@ const ListingCard = ({
   );
 
   return (
-    <div className="col-span-1 group cursor-pointer">
+    <div
+      className="col-span-1 group cursor-pointer"
+      onClick={() => router.push(`/listings/${listing.id}`)}
+    >
       <div className="w-full flex flex-col gap-2">
         <div className="relative aspect-square rounded-xl overflow-hidden">
           <Image

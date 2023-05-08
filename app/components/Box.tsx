@@ -15,7 +15,7 @@ const Box = ({ children }: Props) => {
 
   return (
     <div
-      className="relative w-screen h-screen overflow-y-auto"
+      className="relative w-screen h-[calc(100vh-150px)] overflow-y-auto"
       onClick={closeAllModals}
     >
       {children}
