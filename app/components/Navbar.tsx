@@ -100,7 +100,10 @@ const Navbar = ({ currentUser }: Props) => {
                       onClick={() => router.push("/trips")}
                     />
 
-                    <MenuItem label="My favourites" onClick={() => {}} />
+                    <MenuItem
+                      label="My favourites"
+                      onClick={() => router.push("/favorites")}
+                    />
 
                     <MenuItem
                       label="My reservations"
@@ -116,14 +119,7 @@ const Navbar = ({ currentUser }: Props) => {
                       onClick={onRentHandler}
                     />
 
-                    <MenuItem
-                      label="Logout"
-                      onClick={() => {
-                        signOut();
-
-                        router.push("/");
-                      }}
-                    />
+                    <MenuItem label="Logout" onClick={() => signOut()} />
                   </>
                 ) : (
                   <>
