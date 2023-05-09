@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import dynamic from "next/dynamic";
 import { IconType } from "react-icons";
 import { UserProps } from "@/types";
 import useCountries from "@/app/hooks/useCountries";
@@ -34,6 +35,10 @@ const ListingInfo = ({
   const { getByValue } = useCountries();
 
   const coordinates = getByValue(locationValue)?.latlng;
+
+  const Map = dynamic(() => import("../Map"), {
+    ssr: false,
+  });
 
   return (
     <div className="flex flex-col gap-8 col-span-4">
@@ -70,6 +75,12 @@ const ListingInfo = ({
       )}
 
       <hr />
+
+      <p className="text-lg font-light text-neutral-500">{description}</p>
+
+      <hr />
+
+      <Map center={coordinates} />
     </div>
   );
 };

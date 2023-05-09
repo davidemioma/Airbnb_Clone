@@ -5,6 +5,7 @@ import ClientOnly from "@/app/components/ClientsOnly";
 import { getCurrentUser } from "@/app/actions/getCurrentUser";
 import { getListingById } from "@/app/actions/getListingById";
 import ListingClient from "./ListingClient";
+import { getReservations } from "@/app/actions/getReservations";
 
 interface Params {
   listingId?: string;
@@ -14,6 +15,8 @@ const Listing = async ({ params }: { params: Params }) => {
   const listing = await getListingById(params);
 
   const currentUser = await getCurrentUser();
+
+  const reservations = await getReservations(params);
 
   if (!listing) {
     return (
@@ -28,7 +31,11 @@ const Listing = async ({ params }: { params: Params }) => {
   return (
     <ClientOnly>
       <Box>
-        <ListingClient currentUser={currentUser} listing={listing} />
+        <ListingClient
+          currentUser={currentUser}
+          listing={listing}
+          reservations={reservations}
+        />
       </Box>
     </ClientOnly>
   );

@@ -1,4 +1,4 @@
-import { User, Listing } from "@prisma/client";
+import { User, Listing, Reservation } from "@prisma/client";
 
 export type UserProps = Omit<
   User,
@@ -11,6 +11,16 @@ export type UserProps = Omit<
 
 export type ListingProps = Omit<Listing, "createdAt"> & {
   createdAt: string;
+};
+
+export type ReservationProps = Omit<
+  Reservation,
+  "startDate" | "endDate" | "createdAt" | "listing"
+> & {
+  startDate: string;
+  endDate: string;
+  createdAt: string;
+  listing: ListingProps;
 };
 
 export interface CountryType {
