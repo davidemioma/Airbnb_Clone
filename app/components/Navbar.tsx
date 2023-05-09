@@ -110,7 +110,10 @@ const Navbar = ({ currentUser }: Props) => {
                       onClick={() => router.push("/reservations")}
                     />
 
-                    <MenuItem label="My properties" onClick={() => {}} />
+                    <MenuItem
+                      label="My properties"
+                      onClick={() => router.push("/properties")}
+                    />
 
                     <hr className="my-2" />
 
