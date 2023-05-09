@@ -95,7 +95,10 @@ const Navbar = ({ currentUser }: Props) => {
               <div className="absolute mt-3 right-0 z-30 bg-white w-60 py-2 border border-[whitesmoke] rounded-xl shadow-md">
                 {currentUser ? (
                   <>
-                    <MenuItem label="My trips" onClick={() => {}} />
+                    <MenuItem
+                      label="My trips"
+                      onClick={() => router.push("/trips")}
+                    />
 
                     <MenuItem label="My favourites" onClick={() => {}} />
 
