@@ -116,7 +116,14 @@ const Navbar = ({ currentUser }: Props) => {
                       onClick={onRentHandler}
                     />
 
-                    <MenuItem label="Logout" onClick={() => signOut()} />
+                    <MenuItem
+                      label="Logout"
+                      onClick={() => {
+                        signOut();
+
+                        router.push("/");
+                      }}
+                    />
                   </>
                 ) : (
                   <>

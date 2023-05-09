@@ -25,7 +25,7 @@ const TripsClient = ({ currentUser, reservations }: Props) => {
       axios
         .delete(`/api/reservations/${id}`)
         .then(() => {
-          toast.success("Success");
+          toast.success("Reservation Cancelled");
 
           router.refresh();
         })
