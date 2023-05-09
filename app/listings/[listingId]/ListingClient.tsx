@@ -76,7 +76,7 @@ const ListingClient = ({ currentUser, listing, reservations = [] }: Props) => {
 
         setDateRange(initialDateRange);
 
-        router.refresh();
+        router.push("/trips");
       })
       .catch((err) => {
         toast.error("Something went wrong!");

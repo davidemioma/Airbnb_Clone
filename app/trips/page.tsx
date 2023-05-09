@@ -1,6 +1,5 @@
 import React from "react";
 import Box from "../components/Box";
-import Container from "../components/Container";
 import EmptyState from "../components/EmptyState";
 import ClientOnly from "../components/ClientsOnly";
 import { getCurrentUser } from "../actions/getCurrentUser";
@@ -40,9 +39,7 @@ const Trips = async () => {
   return (
     <ClientOnly>
       <Box>
-        <Container>
-          <TripsClient currentUser={currentUser} reservations={reservations} />
-        </Container>
+        <TripsClient currentUser={currentUser} reservations={reservations} />
       </Box>
     </ClientOnly>
   );

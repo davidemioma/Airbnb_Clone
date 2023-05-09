@@ -2,7 +2,7 @@
 import React, { useCallback, useMemo } from "react";
 import Image from "next/image";
 import { Reservation } from "@prisma/client";
-import { ListingProps, UserProps } from "@/types";
+import { ListingProps, ReservationProps, UserProps } from "@/types";
 import { format } from "date-fns";
 import HeartButton from "../HeartButton";
 import { useRouter } from "next/navigation";
@@ -12,7 +12,7 @@ import Button from "../Button";
 interface Props {
   listing: ListingProps;
   currentUser: UserProps | null;
-  reservation?: Reservation;
+  reservation?: ReservationProps;
   disabled?: boolean;
   actionId?: string;
   actionLabel?: string;
