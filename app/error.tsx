@@ -6,7 +6,7 @@ interface Props {
   error: Error;
 }
 
-const error = ({ error }: Props) => {
+const Error = ({ error }: Props) => {
   useEffect(() => {
     console.error(error);
   }, [error]);
@@ -14,4 +14,4 @@ const error = ({ error }: Props) => {
   return <EmptyState title="Uh Oh" subtitle="Something went wrong!" />;
 };
 
-export default error;
+export default Error;

@@ -113,7 +113,7 @@ const Login = () => {
       />
 
       <div className="flex items-center gap-2 mt-4 text-sm text-neutral-500 font-light">
-        <p>Don't have an account?</p>
+        <p>Don&apos;t have an account?</p>
 
         <button
           className="text-neutral-800 font-semibold hover:underline"
