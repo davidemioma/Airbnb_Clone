@@ -1,5 +1,15 @@
 import { User, Listing, Reservation } from "@prisma/client";
 
+export interface SearchParamsProps {
+  guestCount?: number;
+  roomCount?: number;
+  bathroomCount?: number;
+  startDate?: string;
+  endDate?: string;
+  locationValue?: string;
+  category?: string;
+}
+
 export type UserProps = Omit<
   User,
   "createdAt" | "updatedAt" | "emailVerified"

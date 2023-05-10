@@ -1,5 +1,5 @@
 import Box from "./components/Box";
-import { ListingProps } from "@/types";
+import { ListingProps, SearchParamsProps } from "@/types";
 import Container from "./components/Container";
 import EmptyState from "./components/EmptyState";
 import ClientOnly from "./components/ClientsOnly";
@@ -7,8 +7,12 @@ import { getListings } from "./actions/getListings";
 import { getCurrentUser } from "./actions/getCurrentUser";
 import ListingCard from "./components/listings/ListingCard";
 
-export default async function Home() {
-  const listings = await getListings();
+interface Props {
+  searchParams: SearchParamsProps;
+}
+
+export default async function Home({ searchParams }: Props) {
+  const listings = await getListings(searchParams);
 
   const currentUser = await getCurrentUser();
 

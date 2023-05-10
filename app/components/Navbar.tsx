@@ -1,5 +1,5 @@
 "use client";
-import React, { useCallback } from "react";
+import React, { useCallback, useMemo } from "react";
 import Image from "next/image";
 import Avatar from "./Avatar";
 import MenuItem from "./MenuItem";
@@ -7,13 +7,15 @@ import Container from "./Container";
 import { UserProps } from "@/types";
 import { signOut } from "next-auth/react";
 import { BiSearch } from "react-icons/bi";
+import { differenceInDays } from "date-fns";
 import { AiOutlineMenu } from "react-icons/ai";
-import { useRouter } from "next/navigation";
 import useSearchModal from "../hooks/useSearchModal";
 import useLoginModal from "../hooks/useLoginModal";
 import useRegisterModal from "../hooks/useRegisterModal";
 import useRentModal from "../hooks/useRentModal";
 import useFilterModal from "../hooks/useFilterModal";
+import useCountries from "../hooks/useCountries";
+import { useRouter, useSearchParams } from "next/navigation";
 
 interface Props {
   currentUser: UserProps | null;
@@ -21,6 +23,10 @@ interface Props {
 
 const Navbar = ({ currentUser }: Props) => {
   const router = useRouter();
+
+  const params = useSearchParams();
+
+  const { getByValue } = useCountries();
 
   const searchModal = useSearchModal();
 
@@ -42,6 +48,44 @@ const Navbar = ({ currentUser }: Props) => {
     rentModal.onOpen();
   }, [currentUser, loginModal, rentModal]);
 
+  const locationValue = params?.get("locationValue");
+
+  const startDate = params?.get("startDate");
+
+  const endDate = params?.get("endDate");
+
+  const guestCount = params?.get("guestCount");
+
+  const locationLabel = useMemo(() => {
+    if (!locationValue) return "Anywhere";
+
+    return getByValue(locationValue as string)?.label;
+  }, [locationValue, getByValue]);
+
+  const durationLabel = useMemo(() => {
+    if (startDate && endDate) {
+      const start = new Date(startDate as string);
+
+      const end = new Date(endDate as string);
+
+      let diff = -differenceInDays(start, end);
+
+      if (diff === 0) {
+        diff = 1;
+      }
+
+      return `${diff} Day${diff > 1 ? "s" : ""}`;
+    }
+
+    return "Any Week";
+  }, [startDate, endDate]);
+
+  const guestLabel = useMemo(() => {
+    if (!guestCount) return "Add Guests";
+
+    return `${guestCount} Guests`;
+  }, [guestCount]);
+
   return (
     <nav className="w-screen sticky top-0 z-30 bg-white py-4 border-b shadow-sm">
       <Container>
@@ -59,15 +103,17 @@ const Navbar = ({ currentUser }: Props) => {
             onClick={() => filterModal.onOpen()}
             className="w-full md:w-auto flex items-center justify-between py-2 text-sm cursor-pointer border rounded-full shadow-sm hover:shadow-md transition"
           >
-            <button className="px-4 font-semibold sm:border-r">Anywhere</button>
+            <button className="px-4 font-semibold sm:border-r">
+              {locationLabel}
+            </button>
 
             <button className="hidden sm:inline px-6 font-semibold border-r">
-              Any week
+              {durationLabel}
             </button>
 
             <div className="flex items-center justify-center space-x-2 px-6">
               <button className="hidden sm:inline text-gray-600">
-                Add Guests
+                {guestLabel}
               </button>
 
               <button className="bg-rose-500 text-white p-1.5 sm:p-2 rounded-full">
