@@ -4,8 +4,8 @@ export interface SearchParamsProps {
   guestCount?: number;
   roomCount?: number;
   bathroomCount?: number;
-  startDate?: string;
-  endDate?: string;
+  startDate?: string | null;
+  endDate?: string | null;
   locationValue?: string;
   category?: string;
 }
