@@ -18,11 +18,11 @@ export default async function Home({ searchParams }: Props) {
 
   if (listings.length === 0)
     return (
-      <Box>
-        <ClientOnly>
+      <ClientOnly>
+        <Box>
           <EmptyState showReset />
-        </ClientOnly>
-      </Box>
+        </Box>
+      </ClientOnly>
     );
 
   return (
