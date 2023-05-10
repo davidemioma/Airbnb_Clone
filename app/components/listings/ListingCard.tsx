@@ -64,10 +64,7 @@ const ListingCard = ({
   );
 
   return (
-    <div
-      className="col-span-1 group cursor-pointer"
-      onClick={() => router.push(`/listings/${listing.id}`)}
-    >
+    <div className="col-span-1 group cursor-pointer">
       <div className="w-full flex flex-col gap-2">
         <div className="relative aspect-square rounded-xl overflow-hidden">
           <Image
@@ -75,25 +72,31 @@ const ListingCard = ({
             fill
             src={listing.imgSrc}
             alt="listings"
+            onClick={() => router.push(`/listings/${listing.id}`)}
           />
 
-          <div className="absolute top-3 right-3">
+          <div className="absolute z-10 top-3 right-3">
             <HeartButton listingId={listing.id} currentUser={currentUser} />
           </div>
         </div>
 
-        <div className="font-semibold text-lg">
-          {location?.region}, {location?.label}
-        </div>
+        <div
+          className="flex flex-col gap-2"
+          onClick={() => router.push(`/listings/${listing.id}`)}
+        >
+          <div className="font-semibold text-lg">
+            {location?.region}, {location?.label}
+          </div>
 
-        <div className="font-light text-neutral-500">
-          {reservationDate || listing.category}
-        </div>
+          <div className="font-light text-neutral-500">
+            {reservationDate || listing.category}
+          </div>
 
-        <div className="flex flex-row items-center gap-1">
-          <div className="font-semibold">$ {price}</div>
+          <div className="flex flex-row items-center gap-1">
+            <div className="font-semibold">$ {price}</div>
 
-          {!reservation && <div className="font-light">night</div>}
+            {!reservation && <div className="font-light">night</div>}
+          </div>
         </div>
 
         {onAction && actionLabel && (
