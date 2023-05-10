@@ -10,7 +10,7 @@ export interface SearchParamsProps {
   category?: string;
 }
 
-export const getListings = async (searchParams: SearchParamsProps) => {
+export const getListings = async (params: SearchParamsProps) => {
   try {
     const {
       startDate,
@@ -20,7 +20,7 @@ export const getListings = async (searchParams: SearchParamsProps) => {
       roomCount,
       guestCount,
       locationValue,
-    } = searchParams;
+    } = params;
 
     let query: any = {};
 
