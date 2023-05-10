@@ -1,9 +1,9 @@
 import Box from "./components/Box";
-import { ListingProps, SearchParamsProps } from "@/types";
+import { ListingProps } from "@/types";
 import Container from "./components/Container";
 import EmptyState from "./components/EmptyState";
 import ClientOnly from "./components/ClientsOnly";
-import { getListings } from "./actions/getListings";
+import { SearchParamsProps, getListings } from "./actions/getListings";
 import { getCurrentUser } from "./actions/getCurrentUser";
 import ListingCard from "./components/listings/ListingCard";
 

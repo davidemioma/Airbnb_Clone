@@ -1,5 +1,14 @@
 import prisma from "@/lib/prismadb";
-import { SearchParamsProps } from "@/types";
+
+export interface SearchParamsProps {
+  guestCount?: number;
+  roomCount?: number;
+  bathroomCount?: number;
+  startDate?: string;
+  endDate?: string;
+  locationValue?: string;
+  category?: string;
+}
 
 export const getListings = async (searchParams: SearchParamsProps) => {
   try {
