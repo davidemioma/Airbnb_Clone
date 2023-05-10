@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo } from "react";
-import axios from "@/util/axios";
+import axios from "axios";
 import { UserProps } from "@/types";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
