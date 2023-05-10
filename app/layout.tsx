@@ -8,6 +8,7 @@ import { getCurrentUser } from "./actions/getCurrentUser";
 import Categories from "./components/categories/Categories";
 import Rent from "./components/modals/Rent";
 import ClientOnly from "./components/ClientsOnly";
+import Search from "./components/modals/Search";
 
 const font = Nunito({
   subsets: ["latin"],
@@ -42,6 +43,8 @@ export default async function RootLayout({
           <Login />
 
           <Rent />
+
+          <Search />
         </ClientOnly>
 
         <main className="py-5">{children}</main>

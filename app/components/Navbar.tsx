@@ -13,6 +13,7 @@ import useSearchModal from "../hooks/useSearchModal";
 import useLoginModal from "../hooks/useLoginModal";
 import useRegisterModal from "../hooks/useRegisterModal";
 import useRentModal from "../hooks/useRentModal";
+import useFilterModal from "../hooks/useFilterModal";
 
 interface Props {
   currentUser: UserProps | null;
@@ -28,6 +29,8 @@ const Navbar = ({ currentUser }: Props) => {
   const registerModal = useRegisterModal();
 
   const rentModal = useRentModal();
+
+  const filterModal = useFilterModal();
 
   const onRentHandler = useCallback(() => {
     if (!currentUser) {
@@ -52,7 +55,10 @@ const Navbar = ({ currentUser }: Props) => {
             onClick={() => router.push("/")}
           />
 
-          <div className="w-full md:w-auto flex items-center justify-between py-2 text-sm cursor-pointer border rounded-full shadow-sm hover:shadow-md transition">
+          <div
+            onClick={() => filterModal.onOpen()}
+            className="w-full md:w-auto flex items-center justify-between py-2 text-sm cursor-pointer border rounded-full shadow-sm hover:shadow-md transition"
+          >
             <button className="px-4 font-semibold sm:border-r">Anywhere</button>
 
             <button className="hidden sm:inline px-6 font-semibold border-r">
