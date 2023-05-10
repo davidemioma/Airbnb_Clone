@@ -5,7 +5,7 @@ import Heading from "../Heading";
 import dynamic from "next/dynamic";
 import Counter from "../inputs/Counter";
 import Input from "../inputs/Input";
-import axios from "@/util/axios";
+import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import ImageUpload from "../inputs/ImageUpload";

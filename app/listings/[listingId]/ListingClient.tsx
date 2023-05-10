@@ -1,6 +1,6 @@
 "use client";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import axios from "@/util/axios";
+import axios from "axios";
 import { toast } from "react-hot-toast";
 import { Reservation } from "@prisma/client";
 import { categories } from "@/util/helper";

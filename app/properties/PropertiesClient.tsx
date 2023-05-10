@@ -1,6 +1,6 @@
 "use client";
 import React, { useCallback, useState } from "react";
-import axios from "@/util/axios";
+import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import Heading from "../components/Heading";

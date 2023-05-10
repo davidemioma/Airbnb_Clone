@@ -1,7 +1,7 @@
 "use client";
 import React, { useCallback, useState } from "react";
 import { signIn } from "next-auth/react";
-import axios from "@/util/axios";
+import axios from "axios";
 import Modal from "./Modal";
 import Heading from "../Heading";
 import Input from "../inputs/Input";
