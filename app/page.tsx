@@ -3,22 +3,18 @@ import { ListingProps } from "@/types";
 import Container from "./components/Container";
 import EmptyState from "./components/EmptyState";
 import ClientOnly from "./components/ClientsOnly";
-import { getListings } from "./actions/getListings";
+import { getListings, SearchParamsProps } from "./actions/getListings";
 import { getCurrentUser } from "./actions/getCurrentUser";
 import ListingCard from "./components/listings/ListingCard";
 
-//SearchParamsProps
+export const dynamic = "force-dynamic";
 
-// interface Props {
-//   searchParams: SearchParamsProps;
-// }
+interface Props {
+  searchParams: SearchParamsProps;
+}
 
-//{ searchParams }: Props
-
-// searchParams;
-
-export default async function Home() {
-  const listings = await getListings();
+export default async function Home({ searchParams }: Props) {
+  const listings = await getListings(searchParams);
 
   const currentUser = await getCurrentUser();
 
