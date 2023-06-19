@@ -59,6 +59,8 @@ const TripsClient = ({ currentUser, reservations }: Props) => {
             actionLabel="Cancel reservation"
           />
         ))}
+
+        <div className="w-full h-5 sm:hidden" />
       </div>
     </Container>
   );

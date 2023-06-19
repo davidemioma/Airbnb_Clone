@@ -39,6 +39,8 @@ export default async function Home({ searchParams }: Props) {
                 currentUser={currentUser}
               />
             ))}
+
+            <div className="w-full h-5 sm:hidden" />
           </div>
         </Container>
       </Box>

@@ -56,6 +56,8 @@ const ReservationsClient = ({ currentUser, reservations }: Props) => {
             actionLabel="Cancel guest reservation"
           />
         ))}
+
+        <div className="w-full h-5 sm:hidden" />
       </div>
     </Container>
   );

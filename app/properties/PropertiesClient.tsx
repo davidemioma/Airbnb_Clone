@@ -55,6 +55,8 @@ const PropertiesClient = ({ currentUser, listings }: Props) => {
             actionLabel="Delete Property"
           />
         ))}
+
+        <div className="w-full h-5 sm:hidden" />
       </div>
     </Container>
   );
